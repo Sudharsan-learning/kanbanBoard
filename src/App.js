@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Subheader from "./components/Subheader";
 import Bottomheader from "./components/Bottomheader";
 import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd";
 import data from "./data.json";
-import * as serviceCaller from "./services";
 import Popup from "./components/Popup";
 
 const onDragEnd = (result, columns, setColumns) => {
@@ -108,7 +107,7 @@ function App() {
           <DragDropContext
             onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
           >
-            {Object.entries(columns).map(([columnId, column], index) => {
+            {Object.entries(columns).map(([columnId, column]) => {
 
               console.log("column", column)
               return (
@@ -129,24 +128,24 @@ function App() {
                               })}
                               className="max-candidate-height mb-3"
                             >
-                              {column.items.map((item, index) => {
+                              {column.items.map((item, i) => {
                                 return (
                                   <Draggable
                                     key={item.id}
                                     draggableId={item.id}
-                                    index={index}
+                                    index={i}
                                   >
-                                    {(provided, snapshot) => {
+                                    {(provid, snapshoted) => {
                                       return (
                                         <div
-                                          ref={provided.innerRef}
-                                          {...provided.draggableProps}
-                                          {...provided.dragHandleProps}
+                                          ref={provid.innerRef}
+                                          {...provid.draggableProps}
+                                          {...provid.dragHandleProps}
                                           className="mt-2 mb-2"
                                           style={{
                                             userSelect: "none",
                                             margin: "0 0 8px 0",
-                                            backgroundColor: snapshot.isDragging
+                                            backgroundColor: snapshoted.isDragging
                                               ? "#263B4A"
                                               : "#456C86",
                                             color: "white",

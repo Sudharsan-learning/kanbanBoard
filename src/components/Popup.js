@@ -5,7 +5,7 @@ function Popup({ visible, setVisible }) {
   const [filterValue, setFilterValue] = useState();
 
   const getValue = (e) => {
-    const columnData = data.filter((data) => data.name.first == e.target.value);
+    const columnData = data.filter((datas) => datas.name.first == e.target.value);
     console.log("column", columnData);
     setFilterValue(columnData);
   };

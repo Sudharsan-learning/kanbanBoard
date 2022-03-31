@@ -35,7 +35,6 @@
   border: none;
   border-bottom: 1px solid #cfd7df;
   border-radius: 0;
-  padding: 0 20px;
   font-size: 14px;
   outline: none;
   text-indent: 15px;
@@ -72,7 +71,6 @@
   left: 15px;
   color: #fff;
   font-size: 11px;
-  font-family: arial;
   text-align: center;
   line-height: 18px;
   font-weight: 700;
