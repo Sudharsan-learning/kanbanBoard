@@ -1,0 +1,48 @@
+.seperate-header {
+  background-color: #fff;
+  border-radius: 3px;
+  color: #12344d;
+  padding: 11px 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  border-left: 4px solid #92a2b1;
+  margin-top: 25px;
+  width: 260px;
+}
+.seperate-candidate {
+  border-radius: 3px;
+  background-color: #fff;
+  height: 100px;
+  -webkit-box-shadow: 0 1px 2px 0 #cfd7df;
+  box-shadow: 0 1px 2px 0 #cfd7df;
+  width: 260px;
+}
+.applicant-info {
+  position: relative;
+  padding: 10px 15px 0;
+  height: calc(100% - 34px);
+}
+.applicant-quick-info {
+  padding: 5px;
+  height: 34px;
+  background: linear-gradient(0deg, #fff 0, #f5f7f9 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.fa-star {
+  font-size: 12px;
+  margin-left: 2px;
+}
+.max-candidate-height {
+  max-height: 60vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.overflow-x-scroll{
+  overflow-x: scroll;
+}

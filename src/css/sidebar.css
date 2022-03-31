@@ -1,0 +1,51 @@
+.navbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 19px;
+  border: 1px solid transparent;
+}
+
+.navbar-primary {
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 60px;
+  border-radius: 0;
+  border: 0;
+  background-color: #13334a;
+}
+
+.logo-icon-parent {
+  height: 54px;
+  text-align: center;
+  color: #427eb0;
+  font-size: 28px;
+  opacity: 0.3;
+  border-bottom: 1px solid #427eb0;
+  -webkit-box-shadow: 0 1px 0 #000;
+  box-shadow: 0 1px 0 #000;
+}
+
+.logo-icon {
+  margin: 16px;
+}
+.logo-icon::before {
+  line-height: 1.92;
+}
+.icon {
+  width: 28px;
+}
+.f-icon {
+  font-size: 18px;
+  color: #f4f4f4;
+  padding: 10px;
+}
+.f-icon:hover {
+  background-color: #7052cc;
+  border-radius: 5px;
+  text-align: center;
+  display: block;
+  color: #fff;
+  padding: 10px;
+}
