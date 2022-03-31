@@ -6,6 +6,7 @@ import Bottomheader from "./components/Bottomheader";
 import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd";
 import data from "./data.json";
 import Popup from "./components/Popup";
+import Listitem from "./components/Listitem";
 
 const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
@@ -44,11 +45,9 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 function App() {
- 
 
   const [visible, setVisible] = useState(false)
 
- 
   const columnsFromBackend = {
     col1: {
       name: "Open",
@@ -138,27 +137,7 @@ function App() {
                                             ...provid.draggableProps.style,
                                           }}
                                         >
-                                          <div className="seperate-candidate">
-                                            <div className="applicant-info">
-                                              <p>
-                                                {item.name.title}
-                                                {"."} {item.name.first}
-                                              </p>
-                                              <span>Frontend Developer</span>
-                                            </div>
-                                            <div className="applicant-quick-info">
-                                              <div>
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                              </div>
-                                              <div>
-                                                <i class="fa fa-ellipsis-vertical"></i>
-                                              </div>
-                                            </div>
-                                          </div>
+                                          <Listitem item={item}/>
                                         </div>
                                       );
                                     }}

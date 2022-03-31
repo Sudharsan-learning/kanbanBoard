@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import data from "../data.json";
+import Listitem from "./Listitem";
 
 function Popup({ visible, setVisible }) {
   const [filterValue, setFilterValue] = useState();
@@ -29,27 +30,7 @@ function Popup({ visible, setVisible }) {
             <br />
             {filterValue &&
               filterValue.map((item) => (
-                <div className="seperate-candidate mt-5">
-                  <div className="applicant-info">
-                    <p>
-                      {item.name.title}
-                      {"."} {item.name.first}
-                    </p>
-                    <span>Frontend Developer</span>
-                  </div>
-                  <div className="applicant-quick-info">
-                    <div>
-                      <i class="fa-regular fa-star"></i>
-                      <i class="fa-regular fa-star"></i>
-                      <i class="fa-regular fa-star"></i>
-                      <i class="fa-regular fa-star"></i>
-                      <i class="fa-regular fa-star"></i>
-                    </div>
-                    <div>
-                      <i class="fa fa-ellipsis-vertical"></i>
-                    </div>
-                  </div>
-                </div>
+                <Listitem item={item}/>
               ))}
           </section>
         </div>
