@@ -44,21 +44,7 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 function App() {
-  // const [candidate, setCandidate] = useState({});
-  // const [loading, setLoading] = useState(false);
-  // const fetchData = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const response = await serviceCaller.getCandidateDetails();
-  //     setCandidate(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  //   setLoading(false);
-  // };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+ 
 
   const [visible, setVisible] = useState(false)
 
@@ -149,7 +135,7 @@ function App() {
                                               ? "#263B4A"
                                               : "#456C86",
                                             color: "white",
-                                            ...provided.draggableProps.style,
+                                            ...provid.draggableProps.style,
                                           }}
                                         >
                                           <div className="seperate-candidate">
