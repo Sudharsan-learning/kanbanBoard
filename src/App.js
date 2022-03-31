@@ -128,12 +128,6 @@ function App() {
                                           {...provid.dragHandleProps}
                                           className="mt-2 mb-2"
                                           style={{
-                                            userSelect: "none",
-                                            margin: "0 0 8px 0",
-                                            backgroundColor: snapshoted.isDragging
-                                              ? "#263B4A"
-                                              : "#456C86",
-                                            color: "white",
                                             ...provid.draggableProps.style,
                                           }}
                                         >
