@@ -48,7 +48,7 @@ function App() {
   console.log("columnsFromBackend", columnsFromBackend);
   const [state, setState] = useState(columnsFromBackend);
 
-  function Item({ provided, item, style, isDragging }) {
+  function Item({ provided, item }) {
     return (
       <div
         {...provided.draggableProps}
@@ -159,7 +159,7 @@ function App() {
         result.destination.index
       );
 
-      const newState = {
+      const newStates = {
         ...state,
         column: {
           ...state.column,
@@ -169,7 +169,7 @@ function App() {
           },
         },
       };
-      setState(newState);
+      setState(newStates);
       return;
     }
 
