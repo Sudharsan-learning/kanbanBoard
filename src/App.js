@@ -1,80 +1,212 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Subheader from "./components/Subheader";
 import Bottomheader from "./components/Bottomheader";
 import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd";
 import data from "./data.json";
+import tech from "./tech.json";
+import contact from "./contact.json";
 import Popup from "./components/Popup";
 import Listitem from "./components/Listitem";
+import { reorderList } from "./components/Reorder";
+import { areEqual, FixedSizeList } from "react-window";
 
-const onDragEnd = (result, columns, setColumns) => {
-  if (!result.destination) return;
-  const { source, destination } = result;
-
-  if (source.droppableId !== destination.droppableId) {
-    const sourceColumn = columns[source.droppableId];
-    const destColumn = columns[destination.droppableId];
-    const sourceItems = [...sourceColumn.items];
-    const destItems = [...destColumn.items];
-    const [removed] = sourceItems.splice(source.index, 1);
-    destItems.splice(destination.index, 0, removed);
-    setColumns({
-      ...columns,
-      [source.droppableId]: {
-        ...sourceColumn,
-        items: sourceItems,
-      },
-      [destination.droppableId]: {
-        ...destColumn,
-        items: destItems,
-      },
-    });
-  } else {
-    const column = columns[source.droppableId];
-    const copiedItems = [...column.items];
-    const [removed] = copiedItems.splice(source.index, 1);
-    copiedItems.splice(destination.index, 0, removed);
-    setColumns({
-      ...columns,
-      [source.droppableId]: {
-        ...column,
-        items: copiedItems,
-      },
-    });
-  }
-};
 function App() {
-
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   const columnsFromBackend = {
-    col1: {
-      name: "Open",
-      items: data,
+    column: {
+      col1: {
+        name: "Open",
+        items: data,
+        id: "col1",
+      },
+      col2: {
+        name: "Contacted",
+        items: contact,
+        id: "col2",
+      },
+      col3: {
+        name: "Written test",
+        items: [],
+        id: "col3",
+      },
+      col4: {
+        name: "Technical round",
+        items: tech,
+        id: "col4",
+      },
+      col5: {
+        name: "Culture fit round",
+        items: [],
+        id: "col5",
+      },
     },
-    col2: {
-      name: "Contacted",
-      items: [],
-    },
-    col3: {
-      name: "Written test",
-      items: [],
-    },
-    col4: {
-      name: "Technical round",
-      items: [],
-    },
-    col5: {
-      name: "Culture fit round",
-      items: [],
-    },
+    columnOrder: ["col1", "col2", "col3", "col4", "col5"],
   };
+  console.log("columnsFromBackend", columnsFromBackend);
+  const [state, setState] = useState(columnsFromBackend);
 
-  const [columns, setColumns] = useState(columnsFromBackend);
+  function Item({ provided, item, style, isDragging }) {
+    return (
+      <div
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}
+        ref={provided.innerRef}
+        className="mt-2"
+      >
+        <Listitem item={item} />
+      </div>
+    );
+  }
+  const Row = React.memo(function Row(props) {
+    const { data: items, index, style } = props;
+    const item = items[index];
+
+    if (!item) {
+      return null;
+    }
+
+    return (
+      <Draggable draggableId={item.id} index={index} key={item.id}>
+        {(provided) => <Item provided={provided} item={item} style={style} />}
+      </Draggable>
+    );
+  }, areEqual);
+  const ItemList = React.memo(function ItemList({ column, index }) {
+    const listRef = useRef();
+    useLayoutEffect(() => {
+      const list = listRef.current;
+      if (list) {
+        list.scrollTo(0);
+      }
+    }, [index]);
+
+    return (
+      <Droppable
+        droppableId={column.id}
+        renderClone={(provided, snapshot, rubric) => (
+          <Item
+            provided={provided}
+            isDragging={snapshot.isDragging}
+            item={column.items[rubric.source.index]}
+          />
+        )}
+      >
+        {(provided, snapshot) => {
+          const itemCount = snapshot.isUsingPlaceholder
+            ? column.items.length + 1
+            : column.items.length;
+          return (
+            <>
+              <FixedSizeList
+                height={400}
+                itemCount={itemCount}
+                itemSize={100}
+                width={270}
+                outerRef={provided.innerRef}
+                itemData={column.items}
+                ref={listRef}
+              >
+                {Row}
+              </FixedSizeList>
+              {provided.placeholder}
+            </>
+          );
+        }}
+      </Droppable>
+    );
+  });
+  const Column = React.memo(function Column({ column, index }) {
+    console.log("column", column.id);
+    return (
+      <Draggable draggableId={column.id} index={index}>
+        {(provided) => (
+          <div {...provided.draggableProps} ref={provided.innerRef}>
+            <h5 className="seperate-header" {...provided.dragHandleProps}>
+              {column.name} - {column.items.length}
+            </h5>
+            <ItemList column={column} index={index} />
+          </div>
+        )}
+      </Draggable>
+    );
+  });
+  function onDragEnd(result) {
+    if (!result.destination) {
+      return;
+    }
+
+    if (result.type === "column") {
+      const columnOrder = reorderList(
+        state.columnOrder,
+        result.source.index,
+        result.destination.index
+      );
+      setState({
+        ...state,
+        columnOrder,
+      });
+      return;
+    }
+
+    if (result.source.droppableId === result.destination.droppableId) {
+      const column = state.column[result.source.droppableId];
+      const items = reorderList(
+        column.items,
+        result.source.index,
+        result.destination.index
+      );
+
+      const newState = {
+        ...state,
+        column: {
+          ...state.column,
+          [column.id]: {
+            ...column,
+            items,
+          },
+        },
+      };
+      setState(newState);
+      return;
+    }
+
+    const sourceColumn = state.column[result.source.droppableId];
+    const destinationColumn = state.column[result.destination.droppableId];
+    const item = sourceColumn.items[result.source.index];
+
+    const newSourceColumn = {
+      ...sourceColumn,
+      items: [...sourceColumn.items],
+    };
+    newSourceColumn.items.splice(result.source.index, 1);
+
+    const newDestinationColumn = {
+      ...destinationColumn,
+      items: [...destinationColumn.items],
+    };
+
+    newDestinationColumn.items.splice(result.destination.index, 0, item);
+
+    const newState = {
+      ...state,
+      column: {
+        ...state.column,
+        [newSourceColumn.id]: newSourceColumn,
+        [newDestinationColumn.id]: newDestinationColumn,
+      },
+    };
+
+    setState(newState);
+
+    console.log(newState);
+  }
+
   return (
     <div className="container">
-      <Popup visible={visible} setVisible={setVisible}/>
+      <Popup visible={visible} setVisible={setVisible} />
       <aside className="navbar-primary navbar">
         <Sidebar />
       </aside>
@@ -89,65 +221,31 @@ function App() {
           <Bottomheader />
         </section>
         <div className="flex h-100 ml-5 no-wrap overflow-x-scroll">
-          <DragDropContext
-            onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
-          >
-            {Object.entries(columns).map(([columnId, column]) => {
-
-              console.log("column", column)
-              return (
-                <section key={columnId}>
-                  <div className="ml-5">
-                    <div className=" seperate-header">
-                      <h5>{column.name} - {column.items.length} </h5>
-                    </div>
-                    <div>
-                      <Droppable droppableId={columnId} key={columnId}>
-                        {(provided, snapshot) => {
-                          return (
-                            <div
-                              {...provided.droppableProps}
-                              ref={provided.innerRef}
-                              {...(snapshot.isDraggingOver && {
-                                className: "landing-col",
-                              })}
-                              className="max-candidate-height mb-3"
-                            >
-                              {column.items.map((item, i) => {
-                                return (
-                                  <Draggable
-                                    key={item.id}
-                                    draggableId={item.id}
-                                    index={i}
-                                  >
-                                    {(provid, snapshoted) => {
-                                      return (
-                                        <div
-                                          ref={provid.innerRef}
-                                          {...provid.draggableProps}
-                                          {...provid.dragHandleProps}
-                                          className="mt-2 mb-2"
-                                          style={{
-                                            ...provid.draggableProps.style,
-                                          }}
-                                        >
-                                          <Listitem item={item}/>
-                                        </div>
-                                      );
-                                    }}
-                                  </Draggable>
-                                );
-                              })}
-                              {provided.placeholder}
-                            </div>
-                          );
-                        }}
-                      </Droppable>
-                    </div>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <div className="app">
+              <Droppable
+                droppableId="all-droppables"
+                direction="horizontal"
+                type="column"
+              >
+                {(provided) => (
+                  <div
+                    className="flex h-100 ml-5 no-wrap w-100 space-between"
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                  >
+                    {state.columnOrder.map((columnId, index) => (
+                      <Column
+                        key={columnId}
+                        column={state.column[columnId]}
+                        index={index}
+                      />
+                    ))}
+                    {provided.placeholder}
                   </div>
-                </section>
-              );
-            })}
+                )}
+              </Droppable>
+            </div>
           </DragDropContext>
         </div>
       </main>

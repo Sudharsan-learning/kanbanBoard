@@ -6,7 +6,9 @@ function Popup({ visible, setVisible }) {
   const [filterValue, setFilterValue] = useState();
 
   const getValue = (e) => {
-    const columnData = data.filter((datas) => datas.name.first == e.target.value);
+    const columnData = data.filter(
+      (datas) => datas.name.first == e.target.value
+    );
     console.log("column", columnData);
     setFilterValue(columnData);
   };
@@ -16,7 +18,12 @@ function Popup({ visible, setVisible }) {
     <>
       <div className={`exit-intent-popup ${visible ? "popup-visible" : ""}`}>
         <div className="popup">
-        <div className="positon-absolute-position-popup-close" onClick={()=> setVisible(false)}><button className="primary-button">Close</button></div>
+          <div
+            className="positon-absolute-position-popup-close"
+            onClick={() => setVisible(false)}
+          >
+            <button className="primary-button">Close</button>
+          </div>
           <section className="popup-container">
             <div>
               <input
@@ -28,10 +35,7 @@ function Popup({ visible, setVisible }) {
               <i className="fa fa-search positon-absolute-position-popup"></i>
             </div>
             <br />
-            {filterValue &&
-              filterValue.map((item) => (
-                <Listitem item={item}/>
-              ))}
+            {filterValue && filterValue.map((item) => <Listitem item={item} />)}
           </section>
         </div>
       </div>
