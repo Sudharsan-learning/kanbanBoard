@@ -28,7 +28,7 @@ function Header({ setVisible }) {
             <i className="top-nav-separator"></i>
           </div>
           <div className="position-relative ml-1">
-            <i class="fa fa-gift"></i>
+            <i className="fa fa-gift"></i>
             <div className="beamer-icon">1</div>
           </div>
           <div className="avatar-circle ml-3">

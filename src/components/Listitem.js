@@ -12,14 +12,14 @@ function Listitem({ item }) {
       </div>
       <div className="applicant-quick-info">
         <div>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i>
         </div>
         <div>
-          <i class="fa fa-ellipsis-vertical"></i>
+          <i className="fa fa-ellipsis-vertical"></i>
         </div>
       </div>
     </div>
