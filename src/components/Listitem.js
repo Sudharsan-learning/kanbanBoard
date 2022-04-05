@@ -2,7 +2,7 @@ import React from "react";
 
 function Listitem({ item }) {
   return (
-    <div className="seperate-candidate">
+    <div className="seperate-candidate w-250">
       <div className="applicant-info position-relative">
         <p>
           {item.name.title}
@@ -10,7 +10,7 @@ function Listitem({ item }) {
         </p>
         <span>Frontend Developer</span>
       </div>
-      <div className="applicant-quick-info">
+      <div className="applicant-quick-info flex space-between align-items-center">
         <div>
           <i className="fa-regular fa-star"></i>
           <i className="fa-regular fa-star"></i>

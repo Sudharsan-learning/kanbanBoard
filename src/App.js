@@ -6,7 +6,7 @@ import contact from "./contact.json";
 import Popup from "./components/Popup";
 import { reorderList } from "./components/Reorder";
 import { areEqual, FixedSizeList } from "react-window";
-import Item from "./components/Item";
+import Listitem from "./components/Listitem";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -41,7 +41,18 @@ function App() {
     columnOrder: ["col1", "col2", "col3", "col4", "col5"],
   };
   const [state, setState] = useState(columnsFromBackend);
-
+  function Item({ provided, item }) {
+    return (
+      <div
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}
+        ref={provided.innerRef}
+        className="mt-2"
+      >
+        <Listitem item={item} />
+      </div>
+    );
+  }
   const Row = React.memo(function Row(props) {
     const { data: items, index, style } = props;
     const item = items[index];
@@ -103,7 +114,10 @@ function App() {
       <Draggable draggableId={column.id} index={index}>
         {(provided) => (
           <div {...provided.draggableProps} ref={provided.innerRef}>
-            <h5 className="seperate-header mt-3" {...provided.dragHandleProps}>
+            <h5
+              className="seperate-header w-250 mt-3"
+              {...provided.dragHandleProps}
+            >
               {column.name} - {column.items.length}
             </h5>
             <ItemList column={column} index={index} />
@@ -181,33 +195,33 @@ function App() {
               <img src="./logo.png" className="logo-icon icon" />
             </i>
             <div className="m-2 mt-3">
-              <i class="fa fa-gauge f-icon "></i>
+              <i className="fa fa-gauge f-icon "></i>
             </div>
             <div className="m-2 mt-3">
-              <i class="fa fa-inbox f-icon "></i>
+              <i className="fa fa-inbox f-icon "></i>
             </div>
             <div className="m-2 mt-3">
-              <i class="fa fa-briefcase f-icon "></i>
+              <i className="fa fa-briefcase f-icon "></i>
             </div>
             <div className="m-2 mt-3">
-              <i class="fa fa-user-group f-icon "></i>
+              <i className="fa fa-user-group f-icon "></i>
             </div>
             <div className="m-2 mt-3">
-              <i class="fa fa-file f-icon "></i>
+              <i className="fa fa-file f-icon "></i>
             </div>
             <div className="m-2 mt-3">
-              <i class="fa fa-gear f-icon "></i>
+              <i className="fa fa-gear f-icon "></i>
             </div>
           </div>
           <div className="text-center">
             <div className="m-2 mt-3">
-              <i class="fa fa-circle-question f-icon"></i>
+              <i className="fa fa-circle-question f-icon"></i>
             </div>
             <div className="m-2 mt-3">
-              <i class="fa fa-message f-icon"></i>
+              <i className="fa fa-message f-icon"></i>
             </div>
             <div className="m-2 mt-3">
-              <i class="fa fa-message f-icon"></i>
+              <i className="fa fa-message f-icon"></i>
             </div>
           </div>
         </div>
@@ -252,7 +266,7 @@ function App() {
           <div className="flex align-items-center space-between">
             <div className="flex align-items-center">
               <div className="ml-5">
-                <i class="fa fa-briefcase ml-5"></i>
+                <i className="fa fa-briefcase ml-5"></i>
               </div>
               <p className="ml-2"> Jobs</p>
               <p className="ml-3">&#10095;</p>
@@ -267,13 +281,13 @@ function App() {
                   Add Candidate
                 </button>
                 <button className="secondary-button bigger bl-0">
-                  <i class="fa fa-angle-down"></i>
+                  <i className="fa fa-angle-down"></i>
                 </button>
               </div>
               <div className="ml-3">
                 <button className="primary-button">
                   <i className="fa fa-globe mr-1"></i> Published{" "}
-                  <i class="fa fa-angle-down ml-2 f-8"></i>
+                  <i className="fa fa-angle-down ml-2 f-8"></i>
                 </button>
               </div>
             </div>
@@ -297,13 +311,13 @@ function App() {
             </div>
             <div className="flex align-items-center">
               <div className="ml-4">
-                <i class="fa fa-list"></i>
+                <i className="fa fa-list"></i>
               </div>
               <div className="ml-4">
-                <i class="fa fa-filter"></i>
+                <i className="fa fa-filter"></i>
               </div>
               <div className="ml-4">
-                <i class="fa fa-upload"></i>
+                <i className="fa fa-upload"></i>
               </div>
             </div>
           </div>
