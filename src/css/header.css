@@ -1,20 +1,13 @@
 .top-nav-bar {
-  /* height: 54px; */
-  border-radius: 0;
   background: #fff;
-  padding-left: 0;
   padding-right: 30px;
-  margin: 0;
   -webkit-box-shadow: 0 0 0 1px #ebeff3;
   box-shadow: 0 0 0 1px #ebeff3;
-  border: 0;
   width: 100%;
 }
-
 .navbar-logo {
   padding: 10px 15px 10px 30px;
   height: 54px;
-  float: left;
   font-size: 18px;
   line-height: 19px;
 }
@@ -25,21 +18,15 @@
   font-size: 18px;
   color: #12344d;
 }
-
 .input-search {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  color: #12344d;
   padding: 5px 10px !important;
   line-height: 1.42857;
   border: none;
   border-bottom: 1px solid #cfd7df;
-  border-radius: 0;
   font-size: 14px;
   outline: none;
   text-indent: 15px;
 }
-
 .positon-absolute-position {
   position: absolute;
   top: 8px;
@@ -74,37 +61,26 @@
   text-align: center;
   line-height: 18px;
   font-weight: 700;
-  opacity: 1;
-  letter-spacing: 0;
 }
 .avatar-circle {
   height: 35px;
   width: 35px;
   border-radius: 50%;
   background-color: #d2cde0;
-  opacity: 0.9;
   text-align: center;
 }
 .avatar-icon {
   color: #fff;
-  height: 100%;
   font-size: 18px;
   font-weight: 600;
   line-height: 36px;
 }
-
 .subheader-content {
   height: 54px;
-  border-radius: 0;
   background-color: #f5f7f9;
-  border-bottom: 1px solid #cfd7df;
-  padding-left: 0;
   padding-right: 30px;
-  margin: 0;
   -webkit-box-shadow: 0 0 0 1px #ebeff3;
   box-shadow: 0 0 0 1px #ebeff3;
-  border: 0;
-  width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -112,14 +88,11 @@
   border-radius: 0;
   padding-left: 0;
   padding-right: 30px;
-  margin: 0;
-  border: 0;
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #ebeff3;
 }
-
 .exit-intent-popup {
   position: fixed;
   top: 0;
@@ -128,14 +101,13 @@
   right: 0;
   z-index: 99;
   background: rgba(204, 203, 203, 0.85);
-  transform: translateY(60%) scale(0);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(0);
 }
-
 .popup-visible {
   transform: translateY(0) scale(1);
 }
-.popup-container{
+.popup-container {
   width: 90%;
 }
 .popup {
@@ -145,13 +117,9 @@
   transform: translate(-50%, -50%);
   width: 60%;
 }
-
 .input-search-popup {
-  box-shadow: none;
   padding: 8px 12px;
   border: 1px solid #cfd7df;
-  border-radius: 4px;
-  font-weight: 500;
   outline: none;
   text-indent: 20px;
 }
@@ -162,9 +130,6 @@
   background-color: #fff;
   background-image: none;
   border-radius: 4px;
-  -webkit-transition: border-color ease-in-out 0.15s,
-    box-shadow ease-in-out 0.15s;
-  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 .positon-absolute-position-popup {
@@ -173,10 +138,9 @@
   left: 12px;
   font-size: 13px !important;
 }
-.positon-absolute-position-popup-close{
+.positon-absolute-position-popup-close {
   position: absolute;
   top: 5px;
   right: 0px;
-  font-size: 13px !important;
   cursor: pointer;
 }

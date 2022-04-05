@@ -4,7 +4,6 @@ import Listitem from "./Listitem";
 
 function Popup({ visible, setVisible }) {
   const [filterValue, setFilterValue] = useState();
-
   const getValue = (e) => {
     const columnData = data.filter(
       (datas) => datas.name.first == e.target.value
@@ -12,8 +11,6 @@ function Popup({ visible, setVisible }) {
     console.log("column", columnData);
     setFilterValue(columnData);
   };
-
-  console.log("filterValue", filterValue);
   return (
     <>
       <div className={`exit-intent-popup ${visible ? "popup-visible" : ""}`}>
@@ -42,5 +39,4 @@ function Popup({ visible, setVisible }) {
     </>
   );
 }
-
 export default Popup;

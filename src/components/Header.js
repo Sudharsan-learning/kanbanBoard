@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header({setVisible}) {
+function Header({ setVisible }) {
   return (
     <>
       <div className=" flex align-items-center space-between">
@@ -11,7 +11,7 @@ function Header({setVisible}) {
           <h3 className="brand-font">iamneo.ai Talent Center</h3>
         </div>
         <div className="flex align-items-center position-relative">
-          <div onClick={()=> setVisible(true)}>
+          <div onClick={() => setVisible(true)}>
             <input
               type="search"
               className="input-search"

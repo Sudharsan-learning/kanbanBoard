@@ -14,7 +14,6 @@ import { areEqual, FixedSizeList } from "react-window";
 
 function App() {
   const [visible, setVisible] = useState(false);
-
   const columnsFromBackend = {
     column: {
       col1: {
@@ -45,9 +44,7 @@ function App() {
     },
     columnOrder: ["col1", "col2", "col3", "col4", "col5"],
   };
-  console.log("columnsFromBackend", columnsFromBackend);
   const [state, setState] = useState(columnsFromBackend);
-
   function Item({ provided, item }) {
     return (
       <div
@@ -119,12 +116,11 @@ function App() {
     );
   });
   const Column = React.memo(function Column({ column, index }) {
-    console.log("column", column.id);
     return (
       <Draggable draggableId={column.id} index={index}>
         {(provided) => (
           <div {...provided.draggableProps} ref={provided.innerRef}>
-            <h5 className="seperate-header" {...provided.dragHandleProps}>
+            <h5 className="seperate-header mt-3" {...provided.dragHandleProps}>
               {column.name} - {column.items.length}
             </h5>
             <ItemList column={column} index={index} />
@@ -137,7 +133,6 @@ function App() {
     if (!result.destination) {
       return;
     }
-
     if (result.type === "column") {
       const columnOrder = reorderList(
         state.columnOrder,
@@ -150,7 +145,6 @@ function App() {
       });
       return;
     }
-
     if (result.source.droppableId === result.destination.droppableId) {
       const column = state.column[result.source.droppableId];
       const items = reorderList(
@@ -158,7 +152,6 @@ function App() {
         result.source.index,
         result.destination.index
       );
-
       const newStates = {
         ...state,
         column: {
@@ -172,24 +165,19 @@ function App() {
       setState(newStates);
       return;
     }
-
     const sourceColumn = state.column[result.source.droppableId];
     const destinationColumn = state.column[result.destination.droppableId];
     const item = sourceColumn.items[result.source.index];
-
     const newSourceColumn = {
       ...sourceColumn,
       items: [...sourceColumn.items],
     };
     newSourceColumn.items.splice(result.source.index, 1);
-
     const newDestinationColumn = {
       ...destinationColumn,
       items: [...destinationColumn.items],
     };
-
     newDestinationColumn.items.splice(result.destination.index, 0, item);
-
     const newState = {
       ...state,
       column: {
@@ -198,12 +186,8 @@ function App() {
         [newDestinationColumn.id]: newDestinationColumn,
       },
     };
-
     setState(newState);
-
-    console.log(newState);
   }
-
   return (
     <div className="container">
       <Popup visible={visible} setVisible={setVisible} />
@@ -252,5 +236,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

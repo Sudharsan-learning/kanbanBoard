@@ -29,18 +29,17 @@ function Sidebar() {
         </div>
         <div className="text-center">
           <div className="m-2 mt-3">
-            <i class="fa fa-circle-question f-icon "></i>
+            <i class="fa fa-circle-question f-icon"></i>
           </div>
           <div className="m-2 mt-3">
-            <i class="fa fa-message f-icon "></i>
+            <i class="fa fa-message f-icon"></i>
           </div>
           <div className="m-2 mt-3">
-            <i class="fa fa-message f-icon "></i>
+            <i class="fa fa-message f-icon"></i>
           </div>
         </div>
       </div>
     </>
   );
 }
-
 export default Sidebar;
