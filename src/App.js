@@ -115,7 +115,7 @@ function App() {
         {(provided) => (
           <div {...provided.draggableProps} ref={provided.innerRef}>
             <h5
-              className="seperate-header w-250 mt-3"
+              className="seperate-header mt-3 mb-3"
               {...provided.dragHandleProps}
             >
               {column.name} - {column.items.length}
@@ -188,7 +188,7 @@ function App() {
   return (
     <div className="container">
       <Popup visible={visible} setVisible={setVisible} />
-      <aside className="navbar-primary navbar">
+      <aside className="navbar-primary navbar h-100">
         <div className="flex flex-column align-items-center space-between h-100">
           <div className="text-center">
             <i className="logo-icon-parent">
@@ -227,7 +227,7 @@ function App() {
         </div>
       </aside>
       <main>
-        <section className="top-nav-bar">
+        <section className="top-nav-bar w-100">
           <div className=" flex align-items-center space-between">
             <div className="flex align-items-center">
               <i className="navbar-logo ml-5">
@@ -254,9 +254,9 @@ function App() {
               </div>
               <div className="position-relative ml-1">
                 <i className="fa fa-gift"></i>
-                <div className="beamer-icon">1</div>
+                <div className="beamer-icon text-center">1</div>
               </div>
-              <div className="avatar-circle ml-3">
+              <div className="avatar-circle ml-3 text-center">
                 <span className="avatar-icon">S</span>
               </div>
             </div>
@@ -324,30 +324,28 @@ function App() {
         </section>
         <div className="flex h-100 ml-5 no-wrap overflow-x-scroll">
           <DragDropContext onDragEnd={onDragEnd}>
-            <div className="app">
-              <Droppable
-                droppableId="all-droppables"
-                direction="horizontal"
-                type="column"
-              >
-                {(provided) => (
-                  <div
-                    className="flex h-100 ml-5 no-wrap w-100 space-between"
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                  >
-                    {state.columnOrder.map((columnId, index) => (
-                      <Column
-                        key={columnId}
-                        column={state.column[columnId]}
-                        index={index}
-                      />
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </div>
+            <Droppable
+              droppableId="all-droppables"
+              direction="horizontal"
+              type="column"
+            >
+              {(provided) => (
+                <div
+                  className="flex h-100 ml-5 no-wrap w-100 space-between"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {state.columnOrder.map((columnId, index) => (
+                    <Column
+                      key={columnId}
+                      column={state.column[columnId]}
+                      index={index}
+                    />
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
           </DragDropContext>
         </div>
       </main>

@@ -27,7 +27,7 @@ function Popup({ visible, setVisible }) {
             <div>
               <input
                 type="search"
-                className="input-search-popup form-control"
+                className="input-search-popup form-control w-100"
                 placeholder="Search candidate by name"
                 onChange={getValue}
               />

@@ -1,19 +1,11 @@
-.navbar {
-  min-height: 50px;
-  margin-bottom: 19px;
-}
 .navbar-primary {
-  height: 100%;
   position: fixed;
   left: 0;
   top: 0;
-  border-radius: 0;
   border: 0;
   background-color: #13334a;
 }
 .logo-icon-parent {
-  text-align: center;
-  color: #427eb0;
   opacity: 0.3;
   border-bottom: 1px solid #427eb0;
   -webkit-box-shadow: 0 1px 0 #000;

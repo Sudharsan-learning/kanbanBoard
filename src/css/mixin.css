@@ -39,11 +39,6 @@
 .text-align-justify-content {
   text-align: justify;
 }
-.light {
-  font-size: 70%;
-  font-weight: 500;
-  color: #333033;
-}
 h1 {
   font-size: 36px;
   line-height: 40px;
@@ -63,9 +58,6 @@ h4 {
 h5 {
   font-size: 14px;
   line-height: 20px;
-}
-.w-250 {
-  width: 250px;
 }
 .w-100 {
   width: 100%;
