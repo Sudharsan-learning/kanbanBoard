@@ -1,8 +1,4 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
-import Subheader from "./components/Subheader";
-import Bottomheader from "./components/Bottomheader";
 import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd";
 import data from "./data.json";
 import tech from "./tech.json";
@@ -179,17 +175,138 @@ function App() {
     <div className="container">
       <Popup visible={visible} setVisible={setVisible} />
       <aside className="navbar-primary navbar">
-        <Sidebar />
+        <div className="flex flex-column align-items-center space-between h-100">
+          <div className="text-center">
+            <i className="logo-icon-parent">
+              <img src="./logo.png" className="logo-icon icon" />
+            </i>
+            <div className="m-2 mt-3">
+              <i class="fa fa-gauge f-icon "></i>
+            </div>
+            <div className="m-2 mt-3">
+              <i class="fa fa-inbox f-icon "></i>
+            </div>
+            <div className="m-2 mt-3">
+              <i class="fa fa-briefcase f-icon "></i>
+            </div>
+            <div className="m-2 mt-3">
+              <i class="fa fa-user-group f-icon "></i>
+            </div>
+            <div className="m-2 mt-3">
+              <i class="fa fa-file f-icon "></i>
+            </div>
+            <div className="m-2 mt-3">
+              <i class="fa fa-gear f-icon "></i>
+            </div>
+          </div>
+          <div className="text-center">
+            <div className="m-2 mt-3">
+              <i class="fa fa-circle-question f-icon"></i>
+            </div>
+            <div className="m-2 mt-3">
+              <i class="fa fa-message f-icon"></i>
+            </div>
+            <div className="m-2 mt-3">
+              <i class="fa fa-message f-icon"></i>
+            </div>
+          </div>
+        </div>
       </aside>
       <main>
         <section className="top-nav-bar">
-          <Header setVisible={setVisible} />
+          <div className=" flex align-items-center space-between">
+            <div className="flex align-items-center">
+              <i className="navbar-logo ml-5">
+                <img src="./logo.png" className="nav-logo-icon" />
+              </i>
+              <h3 className="brand-font">iamneo.ai Talent Center</h3>
+            </div>
+            <div className="flex align-items-center position-relative">
+              <div onClick={() => setVisible(true)}>
+                <input
+                  type="search"
+                  className="input-search"
+                  placeholder="Search"
+                />
+                <i className="fa fa-search positon-absolute-position"></i>
+              </div>
+              <div className="ml-3">
+                <button className="primary-button">
+                  <i className="fa fa-plus"></i>Add New
+                </button>
+              </div>
+              <div className="m-2">
+                <i className="top-nav-separator"></i>
+              </div>
+              <div className="position-relative ml-1">
+                <i className="fa fa-gift"></i>
+                <div className="beamer-icon">1</div>
+              </div>
+              <div className="avatar-circle ml-3">
+                <span className="avatar-icon">S</span>
+              </div>
+            </div>
+          </div>
         </section>
         <section className="subheader-content">
-          <Subheader />
+          <div className="flex align-items-center space-between">
+            <div className="flex align-items-center">
+              <div className="ml-5">
+                <i class="fa fa-briefcase ml-5"></i>
+              </div>
+              <p className="ml-2"> Jobs</p>
+              <p className="ml-3">&#10095;</p>
+              <p className="ml-3"> Full Stack Developer</p>
+              <button className="ml-2 secondary-button">
+                View Job Details
+              </button>
+            </div>
+            <div className="flex align-items-center position-relative">
+              <div className="ml-3">
+                <button className="secondary-button bigger">
+                  Add Candidate
+                </button>
+                <button className="secondary-button bigger bl-0">
+                  <i class="fa fa-angle-down"></i>
+                </button>
+              </div>
+              <div className="ml-3">
+                <button className="primary-button">
+                  <i className="fa fa-globe mr-1"></i> Published{" "}
+                  <i class="fa fa-angle-down ml-2 f-8"></i>
+                </button>
+              </div>
+            </div>
+          </div>
         </section>
         <section className="bottom-header">
-          <Bottomheader />
+          <div className="flex align-items-center space-between">
+            <div className="flex align-items-center">
+              <div className="ml-5">
+                <p className="ml-5">
+                  All candidates - <span> Active (48)</span>
+                  <i className="fa fa-angle-down f-8 ml-2"></i>
+                </p>
+              </div>
+              <div className="ml-5">
+                <p className="ml-5">
+                  <span className="mr-2">Sort by</span>Last Updated
+                  <i className="fa fa-angle-down f-8 ml-2"></i>
+                </p>
+              </div>
+            </div>
+            <div className="flex align-items-center">
+              <div className="ml-4">
+                <i class="fa fa-list"></i>
+              </div>
+              <div className="ml-4">
+                <i class="fa fa-filter"></i>
+              </div>
+              <div className="ml-4">
+                <i class="fa fa-upload"></i>
+              </div>
+            </div>
+          </div>
         </section>
         <div className="flex h-100 ml-5 no-wrap overflow-x-scroll">
           <DragDropContext onDragEnd={onDragEnd}>
