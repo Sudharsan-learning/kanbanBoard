@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import data from "../data.json";
+import tech from "../tech.json";
+import contact from "../contact.json";
 import Listitem from "./Listitem";
 
 function Popup({ visible, setVisible }) {
   const [filterValue, setFilterValue] = useState();
   const getValue = (e) => {
-    const columnData = data.filter(
+    const totalData = [...data, ...tech, ...contact];
+    const columnData = totalData.filter(
       (datas) => datas.name.first === e.target.value
     );
     setFilterValue(columnData);
@@ -30,9 +33,9 @@ function Popup({ visible, setVisible }) {
               />
               <i className="fa fa-search positon-absolute-position-popup"></i>
             </div>
-            <br />
-            {filterValue && filterValue.map((item) => <Listitem item={item} />)}
           </section>
+          <br />
+          {filterValue && filterValue.map((item) => <Listitem item={item} />)}
         </div>
       </div>
     </>
