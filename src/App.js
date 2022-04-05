@@ -8,9 +8,9 @@ import data from "./data.json";
 import tech from "./tech.json";
 import contact from "./contact.json";
 import Popup from "./components/Popup";
-import Listitem from "./components/Listitem";
 import { reorderList } from "./components/Reorder";
 import { areEqual, FixedSizeList } from "react-window";
+import Item from "./components/Item";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -45,18 +45,7 @@ function App() {
     columnOrder: ["col1", "col2", "col3", "col4", "col5"],
   };
   const [state, setState] = useState(columnsFromBackend);
-  function Item({ provided, item }) {
-    return (
-      <div
-        {...provided.draggableProps}
-        {...provided.dragHandleProps}
-        ref={provided.innerRef}
-        className="mt-2"
-      >
-        <Listitem item={item} />
-      </div>
-    );
-  }
+
   const Row = React.memo(function Row(props) {
     const { data: items, index, style } = props;
     const item = items[index];
