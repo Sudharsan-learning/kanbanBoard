@@ -73,7 +73,6 @@ function App() {
         list.scrollTo(0);
       }
     }, [index]);
-
     return (
       <Droppable
         droppableId={column.id}
@@ -90,20 +89,17 @@ function App() {
             ? column.items.length + 1
             : column.items.length;
           return (
-            <>
-              <FixedSizeList
-                height={400}
-                itemCount={itemCount}
-                itemSize={100}
-                width={270}
-                outerRef={provided.innerRef}
-                itemData={column.items}
-                ref={listRef}
-              >
-                {Row}
-              </FixedSizeList>
-              {provided.placeholder}
-            </>
+            <FixedSizeList
+              height={400}
+              itemCount={itemCount}
+              itemSize={100}
+              width={270}
+              outerRef={provided.innerRef}
+              itemData={column.items}
+              ref={listRef}
+            >
+              {Row}
+            </FixedSizeList>
           );
         }}
       </Droppable>
@@ -112,12 +108,9 @@ function App() {
   const Column = React.memo(function Column({ column, index }) {
     return (
       <Draggable draggableId={column.id} index={index}>
-        {(provided) => (
-          <div {...provided.draggableProps} ref={provided.innerRef}>
-            <h5
-              className="seperate-header mt-3 mb-3"
-              {...provided.dragHandleProps}
-            >
+        {(provid) => (
+          <div {...provid.draggableProps} ref={provid.innerRef}>
+            <h5 class="seperate-header mt-3 mb-3" {...provid.dragHandleProps}>
               {column.name} - {column.items.length}
             </h5>
             <ItemList column={column} index={index} />
@@ -128,7 +121,7 @@ function App() {
   });
   function onDragEnd(result) {
     if (!result.destination) {
-      return;
+      return null;
     }
     if (result.type === "column") {
       const columnOrder = reorderList(
@@ -195,7 +188,7 @@ function App() {
               <img src="./logo.png" className="logo-icon icon" />
             </i>
             <div className="m-2 mt-3">
-              <i className="fa fa-gauge f-icon "></i>
+              <i className="fa fa-gauge f-icon"></i>
             </div>
             <div className="m-2 mt-3">
               <i className="fa fa-inbox f-icon "></i>
@@ -228,7 +221,7 @@ function App() {
       </aside>
       <main>
         <section className="top-nav-bar w-100">
-          <div className=" flex align-items-center space-between">
+          <div className="flex align-items-center space-between">
             <div className="flex align-items-center">
               <i className="navbar-logo ml-5">
                 <img src="./logo.png" className="nav-logo-icon" />
@@ -242,19 +235,17 @@ function App() {
                   className="input-search"
                   placeholder="Search"
                 />
-                <i className="fa fa-search positon-absolute-position"></i>
+                <i className="fa fa-search positon-absolute-position position-absolute"></i>
               </div>
-              <div className="ml-3">
-                <button className="primary-button">
-                  <i className="fa fa-plus"></i>Add New
-                </button>
-              </div>
+              <button className="primary-button ml-3">
+                <i className="fa fa-plus"></i>Add New
+              </button>
               <div className="m-2">
-                <i className="top-nav-separator"></i>
+                <i className="top-nav-separator "></i>
               </div>
               <div className="position-relative ml-1">
                 <i className="fa fa-gift"></i>
-                <div className="beamer-icon text-center">1</div>
+                <div class="beamer-icon position-absolute text-center">1</div>
               </div>
               <div className="avatar-circle ml-3 text-center">
                 <span className="avatar-icon">S</span>
@@ -313,9 +304,9 @@ function App() {
               <div className="ml-4">
                 <i className="fa fa-list"></i>
               </div>
-              <div className="ml-4">
+              <span className="ml-4">
                 <i className="fa fa-filter"></i>
-              </div>
+              </span>
               <div className="ml-4">
                 <i className="fa fa-upload"></i>
               </div>

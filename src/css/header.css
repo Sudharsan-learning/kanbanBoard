@@ -25,7 +25,6 @@
   text-indent: 15px;
 }
 .positon-absolute-position {
-  position: absolute;
   top: 8px;
   left: 0px;
   font-size: 13px !important;
@@ -46,7 +45,6 @@
   border-radius: 50%;
   width: 18px;
   background-color: #ff3e43;
-  position: absolute;
   bottom: 15px;
   left: 15px;
   color: #fff;
@@ -93,12 +91,15 @@
 .popup-container {
   width: 90%;
 }
-.popup {
-  position: absolute;
+.popup-bar {
   top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
+}
+.popup {
+  left: 25%;
+  width: 50%;
+}
+.popup-filter {
+  top: 30%;
 }
 .input-search-popup {
   padding: 8px 12px;
@@ -113,13 +114,11 @@
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 .positon-absolute-position-popup {
-  position: absolute;
   top: 15px;
   left: 12px;
   font-size: 13px !important;
 }
 .positon-absolute-position-popup-close {
-  position: absolute;
   top: 5px;
   right: 0px;
 }
