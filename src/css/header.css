@@ -29,10 +29,6 @@
   left: 0px;
   font-size: 13px !important;
 }
-.fa-plus {
-  font-size: 12px;
-  margin-right: 3px;
-}
 .top-nav-separator {
   border-left: 1px solid #e9edf5;
   margin: 15px 5px;
@@ -67,7 +63,6 @@
 .subheader-content {
   height: 54px;
   background-color: #f5f7f9;
-  -webkit-box-shadow: 0 0 0 1px #ebeff3;
   box-shadow: 0 0 0 1px #ebeff3;
   padding: 10px 30px 10px 0px;
 }

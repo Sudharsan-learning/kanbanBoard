@@ -3,11 +3,8 @@ import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd";
 import data from "./data.json";
 import tech from "./tech.json";
 import contact from "./contact.json";
-import Popup from "./components/Popup";
 import { reorderList } from "./components/Reorder";
 import { areEqual, FixedSizeList } from "react-window";
-import Listitem from "./components/Listitem";
-
 function App() {
   const [visible, setVisible] = useState(false);
   const columnsFromBackend = {
@@ -41,6 +38,30 @@ function App() {
     columnOrder: ["col1", "col2", "col3", "col4", "col5"],
   };
   const [state, setState] = useState(columnsFromBackend);
+  function Listitem({ item }) {
+    return (
+      <div className="seperate-candidate m-2">
+        <div className="applicant-info position-relative">
+          <p>
+            {item.name.title} {"."} {item.name.first}
+          </p>
+          <span>Frontend Developer</span>
+        </div>
+        <div className="applicant-quick-info flex space-between align-items-center">
+          <div>
+            <i className="fa-regular fa-star f-12 mr-1"></i>
+            <i className="fa-regular fa-star f-12 mr-1"></i>
+            <i className="fa-regular fa-star f-12 mr-1"></i>
+            <i className="fa-regular fa-star f-12 mr-1"></i>
+            <i className="fa-regular fa-star f-12 mr-1"></i>
+          </div>
+          <div>
+            <i className="fa fa-ellipsis-vertical"></i>
+          </div>
+        </div>
+      </div>
+    );
+  }
   function Item({ provided, item }) {
     return (
       <div
@@ -96,7 +117,6 @@ function App() {
               width={270}
               outerRef={provided.innerRef}
               itemData={column.items}
-              ref={listRef}
             >
               {Row}
             </FixedSizeList>
@@ -178,14 +198,51 @@ function App() {
     };
     setState(newState);
   }
+  const [filter, setFilter] = useState();
+  const getValue = (e) => {
+    if (e.target.value === "") {
+      return setFilter([]);
+    }
+    const totalData = [...data, ...tech, ...contact];
+    const columnData = totalData.filter((datas) =>
+      datas.name.first.includes(e.target.value)
+    );
+    setFilter(columnData);
+  };
   return (
     <div className="container">
-      <Popup visible={visible} setVisible={setVisible} />
+      <div className={`exit-intent-popup ${visible ? "popup-visible" : ""}`}>
+        <div className="popup position-absolute popup-bar">
+          <div
+            className="positon-absolute-position-popup-close position-absolute"
+            onClick={() => setVisible(false)}
+          >
+            <button className="primary-button">Close</button>
+          </div>
+          <section className="popup-container">
+            <div>
+              <input
+                type="search"
+                className="input-search-popup form-control w-100"
+                placeholder="Search candidate by name"
+                onChange={getValue}
+              />
+              <i className="fa fa-search positon-absolute-position-popup position-absolute"></i>
+            </div>
+          </section>
+          <br />
+        </div>
+        <div className="popup position-absolute popup-filter">
+          {visible
+            ? filter && filter.map((item) => <Listitem item={item} />)
+            : ""}
+        </div>
+      </div>
       <aside className="navbar-primary navbar h-100">
         <div className="flex flex-column align-items-center space-between h-100">
           <div className="text-center">
             <i className="logo-icon-parent">
-              <img src="./logo.png" className="logo-icon icon" />
+              <img src="./logo.png" className="logo-icon icon" alt="logo" />
             </i>
             <div className="m-2 mt-3">
               <i className="fa fa-gauge f-icon"></i>
@@ -222,9 +279,9 @@ function App() {
       <main>
         <section className="top-nav-bar w-100">
           <div className="flex align-items-center space-between">
-            <div className="flex align-items-center">
+            <div className="flex align-items-center ml-3">
               <i className="navbar-logo ml-5">
-                <img src="./logo.png" className="nav-logo-icon" />
+                <img src="./logo.png" className="nav-logo-icon" alt="logo" />
               </i>
               <h3 className="brand-font">iamneo.ai Talent Center</h3>
             </div>
@@ -234,11 +291,12 @@ function App() {
                   type="search"
                   className="input-search"
                   placeholder="Search"
+                  disabled
                 />
                 <i className="fa fa-search positon-absolute-position position-absolute"></i>
               </div>
               <button className="primary-button ml-3">
-                <i className="fa fa-plus"></i>Add New
+                <i className="fa fa-plus mr-2 f-12"></i>Add New
               </button>
               <div className="m-2">
                 <i className="top-nav-separator "></i>
@@ -262,16 +320,16 @@ function App() {
               <p className="ml-2"> Jobs</p>
               <p className="ml-3">&#10095;</p>
               <p className="ml-3"> Full Stack Developer</p>
-              <button className="ml-2 secondary-button">
+              <button className="ml-2 secondary-button f-12">
                 View Job Details
               </button>
             </div>
             <div className="flex align-items-center position-relative">
               <div className="ml-3">
-                <button className="secondary-button bigger">
+                <button className="secondary-button f-12 bigger">
                   Add Candidate
                 </button>
-                <button className="secondary-button bigger bl-0">
+                <button className="secondary-button f-12 bigger bl-0">
                   <i className="fa fa-angle-down"></i>
                 </button>
               </div>
@@ -304,9 +362,9 @@ function App() {
               <div className="ml-4">
                 <i className="fa fa-list"></i>
               </div>
-              <span className="ml-4">
+              <div className="ml-4">
                 <i className="fa fa-filter"></i>
-              </span>
+              </div>
               <div className="ml-4">
                 <i className="fa fa-upload"></i>
               </div>
