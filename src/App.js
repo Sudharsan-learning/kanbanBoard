@@ -152,9 +152,9 @@ function App() {
           <div className="flex align-items-center space-between">
             <div className="flex align-items-center ml-3">
               <i className="navbar-logo ml-5"><img src="./logo.png" className="nav-logo-icon" alt="logo" /></i>
-              <h3 className="brand-font">iamneo.ai Talent Center</h3>
+              <h3 className="brand-font">Kanban Board</h3>
             </div>
-            <div className="flex align-items-center position-relative">
+            {/* <div className="flex align-items-center position-relative">
               <div onClick={() => setVisible(true)}>
                 <input type="search" className="input-search" placeholder="Search" disabled />
                 <i className="fa fa-search positon-absolute-position position-absolute"></i>
@@ -164,29 +164,29 @@ function App() {
               <div className="position-relative ml-1"><i className="fa fa-gift"></i>
                 <div class="beamer-icon position-absolute text-center">1</div></div>
               <div className="avatar-circle ml-3 text-center"><span className="avatar-icon">S</span></div>
-            </div>
+            </div> */}
           </div>
         </section>
-        <section className="subheader-content">
+        {/* <section className="subheader-content">
           <div className="flex align-items-center space-between">
             <div className="flex align-items-center">
               <div className="ml-5"><i className="fa fa-briefcase ml-5"></i></div>
               <p className="ml-2"> Jobs</p>
               <p className="ml-3">&#10095;</p>
               <p className="ml-3"> Full Stack Developer</p>
-              <button className="ml-2 secondary-button f-12">View Job Details</button>
+              <button className="ml-2 secondary-button f-12">View Job Details</button> 
             </div>
             <div className="flex align-items-center position-relative">
               <div className="ml-3">
-                <button className="secondary-button f-12 bigger">Add Candidate</button>
-                <button className="secondary-button f-12 bigger bl-0"><i className="fa fa-angle-down"></i></button>
+                <button className="secondary-button f-12 bigger">Add Candidate</button> 
+                 <button className="secondary-button f-12 bigger bl-0"><i className="fa fa-angle-down"></i></button> 
               </div>
               <div className="ml-3">
-                <button className="primary-button"><i className="fa fa-globe mr-1"></i> Published{" "}<i className="fa fa-angle-down ml-2 f-8"></i></button>
+               <button className="primary-button"><i className="fa fa-globe mr-1"></i> Published{" "}<i className="fa fa-angle-down ml-2 f-8"></i></button> 
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         <section className="bottom-header">
           <div className="flex align-items-center space-between">
             <div className="flex align-items-center">
@@ -204,7 +204,7 @@ function App() {
             </div>
           </div>
         </section>
-        <div className="flex h-100 ml-5 no-wrap overflow-x-scroll">
+        <div className="flex ml-5 no-wrap">
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="all-droppables" direction="horizontal" type="column">
               {(provided) => (
